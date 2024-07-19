@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class RutaConPuntosResponseDTO {
+public class RutaConPuntosResponseDto {
   private Long idRuta;
   private String nombreRuta;
   private List<PuntoRutaResponseDTO> puntosDeRuta;
