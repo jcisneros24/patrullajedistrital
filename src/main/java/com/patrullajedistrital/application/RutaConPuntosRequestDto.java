@@ -6,9 +6,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 @Data
-public class RutaConPuntosRequestDTO {
+public class RutaConPuntosRequestDto {
   @NotNull
   @NotEmpty
   private String nombreRuta;
-  private List<PuntoRutaRequestDTO> puntosDeRuta;
+  private List<PuntoRutaRequestDto> puntosDeRuta;
 }

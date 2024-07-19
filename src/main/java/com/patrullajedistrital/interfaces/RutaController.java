@@ -1,13 +1,12 @@
 package com.patrullajedistrital.interfaces;
 /* SWAGGER*/
-import com.patrullajedistrital.application.RutaConPuntosResponseDTO;
+import com.patrullajedistrital.application.RutaConPuntosResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 /* PAQUETES */
-import com.patrullajedistrital.application.RutaConPuntosRequestDTO;
+import com.patrullajedistrital.application.RutaConPuntosRequestDto;
 import com.patrullajedistrital.application.RutaService;
 import com.patrullajedistrital.domain.Ruta;
 
@@ -32,7 +31,7 @@ public class RutaController {
     @ApiResponse(responseCode = "500", description = "Internal server error")
   })
   @PostMapping("/rutas-con-puntos")
-  public ResponseEntity<Ruta> crearRutaConPuntos(@RequestBody RutaConPuntosRequestDTO rutaConPuntosRequestDTO) {
+  public ResponseEntity<Ruta> crearRutaConPuntos(@RequestBody RutaConPuntosRequestDto rutaConPuntosRequestDTO) {
     Ruta rutaCreada = rutaService.crearRutaConPuntos(rutaConPuntosRequestDTO);
     return ResponseEntity.ok(rutaCreada);
   }
@@ -46,8 +45,8 @@ public class RutaController {
     @ApiResponse(responseCode = "500", description = "Internal server error")
   })
   @GetMapping("/{idRuta}/con-puntos")
-  public ResponseEntity<RutaConPuntosResponseDTO> obtenerRutaConPuntos(@PathVariable Long idRuta) {
-    RutaConPuntosResponseDTO rutaConPuntos = rutaService.obtenerRutaConPuntos(idRuta);
+  public ResponseEntity<RutaConPuntosResponseDto> obtenerRutaConPuntos(@PathVariable Long idRuta) {
+    RutaConPuntosResponseDto rutaConPuntos = rutaService.obtenerRutaConPuntos(idRuta);
     return ResponseEntity.ok(rutaConPuntos);
   }
 }

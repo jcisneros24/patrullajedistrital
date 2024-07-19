@@ -26,7 +26,7 @@ public class RutaService {
   @Transactional
 
   // Método para crear una ruta con sus puntos de ruta
-  public Ruta crearRutaConPuntos(RutaConPuntosRequestDTO rutaConPuntosRequestDTO) {
+  public Ruta crearRutaConPuntos(RutaConPuntosRequestDto rutaConPuntosRequestDTO) {
     Ruta nuevaRuta = new Ruta();
     nuevaRuta.setNombreRuta(rutaConPuntosRequestDTO.getNombreRuta());
     Ruta rutaGuardada = rutaRepository.save(nuevaRuta);
@@ -34,7 +34,7 @@ public class RutaService {
     eventPublisher.publishEvent(new RutaCreadaEvent(this, rutaGuardada.getIdRuta(), rutaGuardada.getNombreRuta()));
     // Guardar puntos de ruta
     List<PuntoRuta> puntosDeRuta = new ArrayList<>();
-    for (PuntoRutaRequestDTO puntoDTO : rutaConPuntosRequestDTO.getPuntosDeRuta()) {
+    for (PuntoRutaRequestDto puntoDTO : rutaConPuntosRequestDTO.getPuntosDeRuta()) {
       PuntoRuta puntoRuta = new PuntoRuta();
       puntoRuta.setLatitud(puntoDTO.getLatitud());
       puntoRuta.setLongitud(puntoDTO.getLongitud());
@@ -50,18 +50,18 @@ public class RutaService {
 
   // Método para obtener una ruta con sus puntos de ruta
   @Transactional(readOnly = true)
-  public RutaConPuntosResponseDTO obtenerRutaConPuntos(Long idRuta) {
+  public RutaConPuntosResponseDto obtenerRutaConPuntos(Long idRuta) {
     Ruta ruta = rutaRepository.findById(idRuta)
       .orElseThrow(() -> new RuntimeException("Ruta no encontrada"));
 
-    RutaConPuntosResponseDTO response = new RutaConPuntosResponseDTO();
+    RutaConPuntosResponseDto response = new RutaConPuntosResponseDto();
     response.setIdRuta(ruta.getIdRuta());
     response.setNombreRuta(ruta.getNombreRuta());
 
 
-    List<RutaConPuntosResponseDTO.PuntoRutaResponseDTO> puntosDeRuta = new ArrayList<>();
+    List<RutaConPuntosResponseDto.PuntoRutaResponseDTO> puntosDeRuta = new ArrayList<>();
     for (PuntoRuta punto : ruta.getPuntosDeRuta()) {
-      RutaConPuntosResponseDTO.PuntoRutaResponseDTO puntoResponse = new RutaConPuntosResponseDTO.PuntoRutaResponseDTO();
+      RutaConPuntosResponseDto.PuntoRutaResponseDTO puntoResponse = new RutaConPuntosResponseDto.PuntoRutaResponseDTO();
       puntoResponse.setIdPuntoRuta(punto.getIdPuntoRuta());
       puntoResponse.setLatitud(punto.getLatitud());
       puntoResponse.setLongitud(punto.getLongitud());
